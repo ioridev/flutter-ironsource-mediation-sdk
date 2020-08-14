@@ -1,11 +1,14 @@
 package com.spt.ironsource_flutter_ads;
 
- class Constants {
+class Constants {
 
   static final String INIT = "initialize";
   static final String LOAD_INTERSTITIAL = "loadInterstitial";
   static final String SHOW_INTERSTITIAL = "showInterstitial";
   static final String IS_INTERSTITIAL_READY = "isInterstitialReady";
+  static final String IS_REWARDED_VIDEO_AVAILABLE = "isRewardedVideoAvailable";
+  static final String SHOW_REWARDED_VIDEO = "showRewardedVideo";
+
 
 
   static final String MAIN_CHANNEL = "com.spt.ironsource";

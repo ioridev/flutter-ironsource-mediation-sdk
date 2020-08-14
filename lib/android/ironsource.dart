@@ -3,8 +3,6 @@ import 'dart:async';
 import 'package:flutter/services.dart';
 import 'package:ironsource_flutter_ads/android/model.dart';
 import 'Ironsource_consts.dart';
-import 'ironsource_error.dart';
-import 'ironsource_error.dart';
 export 'ironsource_banner.dart';
 
 class IronSource {

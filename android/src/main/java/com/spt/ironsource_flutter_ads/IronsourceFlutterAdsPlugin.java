@@ -16,6 +16,8 @@ import com.ironsource.mediationsdk.integration.IntegrationHelper;
 import com.ironsource.mediationsdk.logger.IronSourceError;
 import com.ironsource.mediationsdk.model.Placement;
 import com.ironsource.mediationsdk.sdk.InterstitialListener;
+import com.ironsource.mediationsdk.sdk.RewardedVideoListener;
+
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,7 +26,7 @@ import java.util.Map;
 /**
  * IronsourceFlutterAdsPlugin
  */
-public class IronsourceFlutterAdsPlugin implements MethodCallHandler, InterstitialListener {
+public class IronsourceFlutterAdsPlugin implements MethodCallHandler, InterstitialListener ,RewardedVideoListener{
 
 
 
@@ -203,11 +205,11 @@ public class IronsourceFlutterAdsPlugin implements MethodCallHandler, Interstiti
     @Override
     public void onRewardedVideoAdOpened() {
         // called when the video is opened
-        mActivity.runOnUiThread(
+        iActivity.runOnUiThread(
                 new Runnable() {
                     public void run() {
                         //back on UI thread...
-                        mChannel.invokeMethod(Constants.ON_REWARDED_VIDEO_AD_OPENED, null);
+                        iChannel.invokeMethod(Constants.ON_REWARDED_VIDEO_AD_OPENED, null);
                     }
                 }
         );
@@ -216,11 +218,11 @@ public class IronsourceFlutterAdsPlugin implements MethodCallHandler, Interstiti
 
     @Override
     public void onRewardedVideoAdClosed() {
-        mActivity.runOnUiThread(
+        iActivity.runOnUiThread(
                 new Runnable() {
                     public void run() {
                         //back on UI thread...
-                        mChannel.invokeMethod(Constants.ON_REWARDED_VIDEO_AD_CLOSED, null);
+                        iChannel.invokeMethod(Constants.ON_REWARDED_VIDEO_AD_CLOSED, null);
                     }
                 }
         );
@@ -229,11 +231,11 @@ public class IronsourceFlutterAdsPlugin implements MethodCallHandler, Interstiti
     @Override
     public void onRewardedVideoAvailabilityChanged(final boolean b) {
         // called when the video availbility has changed
-        mActivity.runOnUiThread(
+        iActivity.runOnUiThread(
                 new Runnable() {
                     public void run() {
                         //back on UI thread...
-                        mChannel.invokeMethod(Constants.ON_REWARDED_VIDEO_AVAILABILITY_CHANGED, b);
+                        iChannel.invokeMethod(Constants.ON_REWARDED_VIDEO_AVAILABILITY_CHANGED, b);
                     }
                 }
         );
@@ -242,11 +244,11 @@ public class IronsourceFlutterAdsPlugin implements MethodCallHandler, Interstiti
 
     @Override
     public void onRewardedVideoAdStarted() {
-        mActivity.runOnUiThread(
+        iActivity.runOnUiThread(
                 new Runnable() {
                     public void run() {
                         //back on UI thread...
-                        mChannel.invokeMethod(Constants.ON_REWARDED_VIDEO_AD_STARTED, null);
+                        iChannel.invokeMethod(Constants.ON_REWARDED_VIDEO_AD_STARTED, null);
                     }
                 }
         );
@@ -254,11 +256,11 @@ public class IronsourceFlutterAdsPlugin implements MethodCallHandler, Interstiti
 
     @Override
     public void onRewardedVideoAdEnded() {
-        mActivity.runOnUiThread(
+        iActivity.runOnUiThread(
                 new Runnable() {
                     public void run() {
                         //back on UI thread...
-                        mChannel.invokeMethod(Constants.ON_REWARDED_VIDEO_AD_ENDED, null);
+                        iChannel.invokeMethod(Constants.ON_REWARDED_VIDEO_AD_ENDED, null);
                     }
                 }
         );
@@ -266,7 +268,7 @@ public class IronsourceFlutterAdsPlugin implements MethodCallHandler, Interstiti
 
     @Override
     public void onRewardedVideoAdRewarded(final Placement placement) {
-        mActivity.runOnUiThread(
+        iActivity.runOnUiThread(
                 new Runnable() {
                     public void run() {
                         Map<String, Object> arguments = new HashMap<String, Object>();
@@ -274,7 +276,7 @@ public class IronsourceFlutterAdsPlugin implements MethodCallHandler, Interstiti
                         arguments.put("placementName", placement.getPlacementName());
                         arguments.put("rewardAmount", placement.getRewardAmount());
                         arguments.put("rewardName", placement.getRewardName());
-                        mChannel.invokeMethod(Constants.ON_REWARDED_VIDEO_AD_REWARDED, arguments);
+                        iChannel.invokeMethod(Constants.ON_REWARDED_VIDEO_AD_REWARDED, arguments);
                     }
                 }
         );
@@ -283,13 +285,13 @@ public class IronsourceFlutterAdsPlugin implements MethodCallHandler, Interstiti
 
     @Override
     public void onRewardedVideoAdShowFailed(final IronSourceError ironSourceError) {
-        mActivity.runOnUiThread(
+        iActivity.runOnUiThread(
                 new Runnable() {
                     public void run() {
                         Map<String, Object> arguments = new HashMap<String, Object>();
                         arguments.put("errorCode", ironSourceError.getErrorCode());
                         arguments.put("errorMessage", ironSourceError.getErrorMessage());
-                        mChannel.invokeMethod(Constants.ON_REWARDED_VIDEO_AD_SHOW_FAILED, arguments);
+                        iChannel.invokeMethod(Constants.ON_REWARDED_VIDEO_AD_SHOW_FAILED, arguments);
                     }
                 }
         );
@@ -298,7 +300,7 @@ public class IronsourceFlutterAdsPlugin implements MethodCallHandler, Interstiti
 
     @Override
     public void onRewardedVideoAdClicked(final Placement placement) {
-        mActivity.runOnUiThread(
+        iActivity.runOnUiThread(
                 new Runnable() {
                     public void run() {
                         Map<String, Object> arguments = new HashMap<String, Object>();
@@ -306,7 +308,7 @@ public class IronsourceFlutterAdsPlugin implements MethodCallHandler, Interstiti
                         arguments.put("placementName", placement.getPlacementName());
                         arguments.put("rewardAmount", placement.getRewardAmount());
                         arguments.put("rewardName", placement.getRewardName());
-                        mChannel.invokeMethod(Constants.ON_REWARDED_VIDEO_AD_CLICKED, arguments);
+                        iChannel.invokeMethod(Constants.ON_REWARDED_VIDEO_AD_CLICKED, arguments);
                     }
                 }
         );

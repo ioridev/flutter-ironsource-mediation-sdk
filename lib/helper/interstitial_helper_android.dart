@@ -1,5 +1,5 @@
 import 'package:ironsource_flutter_ads/android/ironsource.dart';
-import 'package:ironsource_flutter_ads/android/ironsource_error.dart';
+import 'package:ironsource_flutter_ads/android/model.dart';
 
 import 'package:ironsource_flutter_ads/helper/interstitial_abstract.dart';
 
@@ -107,6 +107,46 @@ class InterstitialHelperAndroid extends InterstitialAbstract
 
   @override
   onShow() {
-     IronSource.showInterstitial();
+    IronSource.showInterstitial();
+  }
+
+  @override
+  void onRewardedVideoAdClicked(Placement placement) {
+    print("onRewardedVideoAdClicked");
+  }
+
+  @override
+  void onRewardedVideoAdClosed() {
+    print("onRewardedVideoAdClosed");
+  }
+
+  @override
+  void onRewardedVideoAdEnded() {
+    print("onRewardedVideoAdEnded");
+  }
+
+  @override
+  void onRewardedVideoAdOpened() {
+    print("onRewardedVideoAdOpened");
+  }
+
+  @override
+  void onRewardedVideoAdRewarded(Placement placement) {
+    print("onRewardedVideoAdRewarded: ${placement.placementName}");
+  }
+
+  @override
+  void onRewardedVideoAdShowFailed(IronSourceError error) {
+    print("onRewardedVideoAdShowFailed : ${error.toString()}");
+  }
+
+  @override
+  void onRewardedVideoAdStarted() {
+    print("onRewardedVideoAdStarted");
+  }
+
+  @override
+  void onRewardedVideoAvailabilityChanged(bool available) {
+    print("onRewardedVideoAvailabilityChanged : $available");
   }
 }
