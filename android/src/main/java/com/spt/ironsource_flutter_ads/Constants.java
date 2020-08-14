@@ -21,6 +21,16 @@ package com.spt.ironsource_flutter_ads;
   static final String INTERSTITIAL_SHOW_SUCCEEDED = "onInterstitialAdShowSucceeded";
   static final String INTERSTITIAL_CLICKED = "onInterstitialAdClicked";
 
+  //    Listener
+  static final String ON_REWARDED_VIDEO_AD_OPENED = "onRewardedVideoAdOpened";
+  static final String ON_REWARDED_VIDEO_AD_CLOSED = "onRewardedVideoAdClosed";
+  static final String ON_REWARDED_VIDEO_AVAILABILITY_CHANGED = "onRewardedVideoAvailabilityChanged";
+  static final String ON_REWARDED_VIDEO_AD_STARTED = "onRewardedVideoAdStarted";
+  static final String ON_REWARDED_VIDEO_AD_ENDED = "onRewardedVideoAdEnded";
+  static final String ON_REWARDED_VIDEO_AD_REWARDED = "onRewardedVideoAdRewarded";
+  static final String ON_REWARDED_VIDEO_AD_SHOW_FAILED = "onRewardedVideoAdShowFailed";
+  static final String ON_REWARDED_VIDEO_AD_CLICKED = "onRewardedVideoAdClicked";
+
   // Banner listener const
   static final String BANNER_LOADED = "onBannerAdLoaded";
   static final String BANNER_CLICKED = "onBannerAdClicked";

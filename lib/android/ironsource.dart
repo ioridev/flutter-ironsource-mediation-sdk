@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/services.dart';
+import 'package:ironsource_flutter_ads/android/model.dart';
 import 'Ironsource_consts.dart';
 import 'ironsource_error.dart';
 import 'ironsource_error.dart';
@@ -20,13 +21,9 @@ class IronSource {
     await _channel.invokeMethod('initialize', {'appKey': appKey});
   }
 
-
   static Future<Null> validateIntegration() async {
     await _channel.invokeMethod('validateIntegration');
   }
-
-
-
 
   static Future<Null> loadInterstitial() async {
     await _channel.invokeMethod('loadInterstitial');
@@ -35,8 +32,6 @@ class IronSource {
   static Future<Null> showInterstitial() async {
     await _channel.invokeMethod('showInterstitial');
   }
-
-
 
   static Future<bool> isInterstitialReady() async {
     return await _channel.invokeMethod('isInterstitialReady');
@@ -49,14 +44,11 @@ class IronSource {
   static Future<Null> activityPaused() async {
     await _channel.invokeMethod('onPause');
   }
-
-
 }
 
 abstract class IronSourceListener {
   Future<Null> _handle(MethodCall call) async {
-
-     if (call.method == INTERSTITIAL_CLICKED)
+    if (call.method == INTERSTITIAL_CLICKED)
       onInterstitialAdClicked();
     else if (call.method == INTERSTITIAL_CLOSED)
       onInterstitialAdClosed();
@@ -74,9 +66,37 @@ abstract class IronSourceListener {
       onInterstitialAdShowFailed(IronSourceError(
           errorCode: call.arguments["errorCode"],
           errorMessage: call.arguments["errorMessage"]));
+
+//    Rewarded
+    if (call.method == ON_REWARDED_VIDEO_AD_CLICKED)
+      onRewardedVideoAdClicked(Placement(
+          placementId: call.arguments["placementid"],
+          placementName: call.arguments["placementName"],
+          rewardAmount: call.arguments["rewardAmount"],
+          rewardName: call.arguments["rewardName"]));
+    else if (call.method == ON_REWARDED_VIDEO_AD_CLOSED)
+      onRewardedVideoAdClosed();
+    else if (call.method == ON_REWARDED_VIDEO_AD_ENDED)
+      onRewardedVideoAdEnded();
+    else if (call.method == ON_REWARDED_VIDEO_AD_OPENED)
+      onRewardedVideoAdOpened();
+    else if (call.method == ON_REWARDED_VIDEO_AD_REWARDED)
+      onRewardedVideoAdRewarded(Placement(
+          placementId: call.arguments["placementid"],
+          placementName: call.arguments["placementName"],
+          rewardAmount: call.arguments["rewardAmount"],
+          rewardName: call.arguments["rewardName"]));
+    else if (call.method == ON_REWARDED_VIDEO_AD_SHOW_FAILED)
+      onRewardedVideoAdShowFailed(
+        IronSourceError(
+            errorCode: call.arguments["errorCode"],
+            errorMessage: call.arguments["errorMessage"]),
+      );
+    else if (call.method == ON_REWARDED_VIDEO_AVAILABILITY_CHANGED)
+      onRewardedVideoAvailabilityChanged(call.arguments);
+    else if (call.method == ON_REWARDED_VIDEO_AD_STARTED)
+      onRewardedVideoAdStarted();
   }
-
-
 
   void onInterstitialAdClicked();
 
@@ -91,4 +111,21 @@ abstract class IronSourceListener {
   void onInterstitialAdShowSucceeded();
 
   void onInterstitialAdShowFailed(IronSourceError error);
+
+  //  Rewarded video
+  void onRewardedVideoAdOpened();
+
+  void onRewardedVideoAdClosed();
+
+  void onRewardedVideoAvailabilityChanged(bool available);
+
+  void onRewardedVideoAdStarted();
+
+  void onRewardedVideoAdEnded();
+
+  void onRewardedVideoAdRewarded(Placement placement);
+
+  void onRewardedVideoAdShowFailed(IronSourceError error);
+
+  void onRewardedVideoAdClicked(Placement placement);
 }

@@ -65,6 +65,11 @@ public class IronsourceFlutterAdsPlugin implements MethodCallHandler, Interstiti
             result.success(null);
         } else if (call.method.equals(Constants.IS_INTERSTITIAL_READY)) {
             result.success(IronSource.isInterstitialReady());
+        } else if (call.method.equals(Constants.IS_REWARDED_VIDEO_AVAILABLE)) {
+            result.success(IronSource.isRewardedVideoAvailable());
+        }   else if (call.method.equals(Constants.SHOW_REWARDED_VIDEO)) {
+            IronSource.showRewardedVideo();
+            result.success(null);
         }  else if (call.method.equals("validateIntegration")) {
             IntegrationHelper.validateIntegration(iActivity);
             result.success(null);
@@ -83,6 +88,7 @@ public class IronsourceFlutterAdsPlugin implements MethodCallHandler, Interstiti
     public void initialize(String appKey) {
 
         IronSource.setInterstitialListener(this);
+        IronSource.setRewardedVideoListener(this);
         SupersonicConfig.getConfigObj().setClientSideCallbacks(true);
         IronSource.init(iActivity, appKey);
 
@@ -193,6 +199,119 @@ public class IronsourceFlutterAdsPlugin implements MethodCallHandler, Interstiti
 
     }
 
+
+    @Override
+    public void onRewardedVideoAdOpened() {
+        // called when the video is opened
+        mActivity.runOnUiThread(
+                new Runnable() {
+                    public void run() {
+                        //back on UI thread...
+                        mChannel.invokeMethod(Constants.ON_REWARDED_VIDEO_AD_OPENED, null);
+                    }
+                }
+        );
+
+    }
+
+    @Override
+    public void onRewardedVideoAdClosed() {
+        mActivity.runOnUiThread(
+                new Runnable() {
+                    public void run() {
+                        //back on UI thread...
+                        mChannel.invokeMethod(Constants.ON_REWARDED_VIDEO_AD_CLOSED, null);
+                    }
+                }
+        );
+    }
+
+    @Override
+    public void onRewardedVideoAvailabilityChanged(final boolean b) {
+        // called when the video availbility has changed
+        mActivity.runOnUiThread(
+                new Runnable() {
+                    public void run() {
+                        //back on UI thread...
+                        mChannel.invokeMethod(Constants.ON_REWARDED_VIDEO_AVAILABILITY_CHANGED, b);
+                    }
+                }
+        );
+
+    }
+
+    @Override
+    public void onRewardedVideoAdStarted() {
+        mActivity.runOnUiThread(
+                new Runnable() {
+                    public void run() {
+                        //back on UI thread...
+                        mChannel.invokeMethod(Constants.ON_REWARDED_VIDEO_AD_STARTED, null);
+                    }
+                }
+        );
+    }
+
+    @Override
+    public void onRewardedVideoAdEnded() {
+        mActivity.runOnUiThread(
+                new Runnable() {
+                    public void run() {
+                        //back on UI thread...
+                        mChannel.invokeMethod(Constants.ON_REWARDED_VIDEO_AD_ENDED, null);
+                    }
+                }
+        );
+    }
+
+    @Override
+    public void onRewardedVideoAdRewarded(final Placement placement) {
+        mActivity.runOnUiThread(
+                new Runnable() {
+                    public void run() {
+                        Map<String, Object> arguments = new HashMap<String, Object>();
+                        arguments.put("placementId", placement.getPlacementId());
+                        arguments.put("placementName", placement.getPlacementName());
+                        arguments.put("rewardAmount", placement.getRewardAmount());
+                        arguments.put("rewardName", placement.getRewardName());
+                        mChannel.invokeMethod(Constants.ON_REWARDED_VIDEO_AD_REWARDED, arguments);
+                    }
+                }
+        );
+
+    }
+
+    @Override
+    public void onRewardedVideoAdShowFailed(final IronSourceError ironSourceError) {
+        mActivity.runOnUiThread(
+                new Runnable() {
+                    public void run() {
+                        Map<String, Object> arguments = new HashMap<String, Object>();
+                        arguments.put("errorCode", ironSourceError.getErrorCode());
+                        arguments.put("errorMessage", ironSourceError.getErrorMessage());
+                        mChannel.invokeMethod(Constants.ON_REWARDED_VIDEO_AD_SHOW_FAILED, arguments);
+                    }
+                }
+        );
+
+    }
+
+    @Override
+    public void onRewardedVideoAdClicked(final Placement placement) {
+        mActivity.runOnUiThread(
+                new Runnable() {
+                    public void run() {
+                        Map<String, Object> arguments = new HashMap<String, Object>();
+                        arguments.put("placementId", placement.getPlacementId());
+                        arguments.put("placementName", placement.getPlacementName());
+                        arguments.put("rewardAmount", placement.getRewardAmount());
+                        arguments.put("rewardName", placement.getRewardName());
+                        mChannel.invokeMethod(Constants.ON_REWARDED_VIDEO_AD_CLICKED, arguments);
+                    }
+                }
+        );
+
+    }
 
 
 }
