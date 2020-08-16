@@ -27,6 +27,23 @@ rootProject.allprojects {
             //IronSource Adapters
             url "http://dl.bintray.com/ironsource-mobile/android-adapters"
         }
+        maven {
+        //Adcolony SDK   
+            url  "https://adcolony.bintray.com/AdColony"
+        }
+        maven {
+        //HyperMX SDK   
+            url "https://raw.githubusercontent.com/HyprMXMobile/Android-SDKs/master"
+        }
+        maven {
+        //Vungle SDK   
+                url 'https://jitpack.io'
+        }
+        maven { 
+            //Moat For Mopub
+            url "https://s3.amazonaws.com/moat-sdk-builds" 
+        }
+        maven{ url "https://imobile-maio.github.io/maven" }
 
 
     }

@@ -58,4 +58,16 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    //Pangle
+    implementation 'com.ironsource.adapters:pangleadapter:4.1.2'
+    implementation 'com.ironsource.adapters:panglesdk:3.1.0.1'
+    //Vungle
+    implementation 'com.ironsource.adapters:vungleadapter:4.3.2'
+    implementation 'com.vungle:publisher-sdk-android:6.7.0' 
+    // Add AdColony Network
+    implementation 'com.ironsource.adapters:adcolonyadapter:4.3.1'
+    implementation 'com.adcolony:sdk:4.1.4'
+    // Add Maio Network
+    implementation 'com.ironsource.adapters:maioadapter:4.1.5'
+    implementation 'com.maio:android-sdk:1.1.11'
 }
