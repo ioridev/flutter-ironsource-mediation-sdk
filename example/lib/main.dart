@@ -11,7 +11,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp>
     with IronSourceListener, WidgetsBindingObserver {
-  final String appKey = "85460dcd";
+  final String appKey = "d136ac1d";
 
   bool rewardeVideoAvailable = false,
       offerwallAvailable = false,

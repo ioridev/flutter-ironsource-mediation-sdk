@@ -24,7 +24,7 @@ PODS:
   - "GoogleUtilities/NSData+zlib (5.8.0)"
   - GoogleUtilities/Reachability (5.8.0):
     - GoogleUtilities/Logger
-  - ironsource_flutter_ads (0.0.1):
+  - ironsource_flutter_ads (1.0.0):
     - Flutter
     - IronSourceAdMobAdapter
     - IronSourceFacebookAdapter
@@ -49,7 +49,7 @@ DEPENDENCIES:
   - ironsource_flutter_ads (from `.symlinks/plugins/ironsource_flutter_ads/ios`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - Google-Mobile-Ads-SDK
     - GoogleAppMeasurement
     - GoogleUtilities
@@ -66,11 +66,11 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/ironsource_flutter_ads/ios"
 
 SPEC CHECKSUMS:
-  Flutter: 58dd7d1b27887414a370fcccb9e645c08ffd7a6a
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
   Google-Mobile-Ads-SDK: 8f4f7e793bfd3fff5b082181b54112f81b579a67
   GoogleAppMeasurement: ffe513e90551844a739e7bcbb1d2aca1c28a4338
   GoogleUtilities: 04fce34bcd5620c1ee76fb79172105c74a4df335
-  ironsource_flutter_ads: 302a4127754cf943f517fe2fd35ad9b9f9af2a94
+  ironsource_flutter_ads: d75f87cb23911168326c6cf92d7837284dbe5bd7
   IronSourceAdMobAdapter: 545e12cb8acb04b18d42d371e487e66373e8431f
   IronSourceFacebookAdapter: 78c388f34e303c15b5ecaaa34b29e00bf85ed5f6
   IronSourceInMobiAdapter: 9f91708cc4c465df66f678da3e408aeb8d1eabb5
@@ -79,4 +79,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: e2ef6e3f9b031db820688d1334dae67d19025d3e
 
-COCOAPODS: 1.7.3
+COCOAPODS: 1.9.3
