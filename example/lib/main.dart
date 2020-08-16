@@ -24,25 +24,6 @@ class _MyAppState extends State<MyApp>
     init();
   }
 
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    switch (state) {
-      case AppLifecycleState.resumed:
-        IronSource.activityResumed();
-        break;
-      case AppLifecycleState.inactive:
-        // TODO: Handle this case.
-        break;
-      case AppLifecycleState.paused:
-        // TODO: Handle this case.
-        IronSource.activityPaused();
-        break;
-      //   case AppLifecycleState.suspending:
-      // TODO: Handle this case.
-      //   break;
-    }
-  }
-
   void init() async {
     var userId = await IronSource.getAdvertiserId();
     await IronSource.validateIntegration();
