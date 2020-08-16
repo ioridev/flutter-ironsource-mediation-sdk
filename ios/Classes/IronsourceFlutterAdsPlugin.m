@@ -43,7 +43,7 @@
 
 - (void)rewardedVideoDidFailToShowWithError:(NSError *)error {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.methodChannel invokeMethod:@"onRewardedVideoAdShowFailed" arguments: nil];
+        [self.methodChannel invokeMethod:@"onRewardedVideoAdShowFailed" arguments: @{@"errorCode": [NSNumber numberWithLong: [error code]], @"errorMessage": [error localizedDescription], @"info": [error userInfo]}];
     });
 }
 
