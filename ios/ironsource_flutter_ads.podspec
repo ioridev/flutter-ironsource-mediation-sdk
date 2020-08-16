@@ -19,7 +19,6 @@ A Flutter plugin that uses native platform views (IOS & Android) to show IronSou
   s.dependency 'IronSourceAdMobAdapter'
   s.dependency 'IronSourceFacebookAdapter'
   s.dependency 'IronSourceInMobiAdapter'
-
   s.static_framework = true
   s.ios.deployment_target = '9.0'
 end

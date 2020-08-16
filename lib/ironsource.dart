@@ -1,12 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter/services.dart';
-import 'package:ironsource_flutter_ads/android/model.dart';
+
+import 'package:ironsource_flutter_ads/models.dart';
+
 import 'Ironsource_consts.dart';
-export 'ironsource_banner.dart';
 
 class IronSource {
-  static const MethodChannel _channel = MethodChannel("com.spt.ironsource");
+  static const MethodChannel _channel = MethodChannel("com.karnadi.ironsource");
   static IronSourceListener _listener;
   static IronSourceListener getListener() {
     return _listener;
@@ -19,8 +20,20 @@ class IronSource {
     await _channel.invokeMethod('initialize', {'appKey': appKey});
   }
 
+  static Future<Null> shouldTrackNetworkState(bool state) async {
+    await _channel.invokeMethod('shouldTrackNetworkState', {'state': state});
+  }
+
   static Future<Null> validateIntegration() async {
     await _channel.invokeMethod('validateIntegration');
+  }
+
+  static Future<Null> setUserId(String userId) async {
+    await _channel.invokeMethod('setUserId', {'userId': userId});
+  }
+
+  static Future<String> getAdvertiserId() async {
+    return await _channel.invokeMethod('getAdvertiserId');
   }
 
   static Future<Null> loadInterstitial() async {
@@ -31,40 +44,25 @@ class IronSource {
     await _channel.invokeMethod('showInterstitial');
   }
 
-  static Future<bool> isInterstitialReady() async {
-    return await _channel.invokeMethod('isInterstitialReady');
+  static Future<Null> showRewardedVideol() async {
+    await _channel.invokeMethod('showRewardedVideo');
   }
 
   static Future<Null> activityResumed() async {
-    await _channel.invokeMethod('onResume');
+    await _channel.invokeMethod('activityResumed');
   }
 
   static Future<Null> activityPaused() async {
-    await _channel.invokeMethod('onPause');
+    await _channel.invokeMethod('activityPaused');
+  }
+
+  static Future<bool> isRewardedVideoAvailable() async {
+    return await _channel.invokeMethod('isRewardedVideoAvailable');
   }
 }
 
 abstract class IronSourceListener {
   Future<Null> _handle(MethodCall call) async {
-    if (call.method == INTERSTITIAL_CLICKED)
-      onInterstitialAdClicked();
-    else if (call.method == INTERSTITIAL_CLOSED)
-      onInterstitialAdClosed();
-    else if (call.method == INTERSTITIAL_OPENED)
-      onInterstitialAdOpened();
-    else if (call.method == INTERSTITIAL_READY)
-      onInterstitialAdReady();
-    else if (call.method == INTERSTITIAL_SHOW_SUCCEEDED)
-      onInterstitialAdShowSucceeded();
-    else if (call.method == INTERSTITIAL_LOAD_FAILED)
-      onInterstitialAdLoadFailed(IronSourceError(
-          errorCode: call.arguments["errorCode"],
-          errorMessage: call.arguments["errorMessage"]));
-    else if (call.method == INTERSTITIAL_SHOW_FAILED)
-      onInterstitialAdShowFailed(IronSourceError(
-          errorCode: call.arguments["errorCode"],
-          errorMessage: call.arguments["errorMessage"]));
-
 //    Rewarded
     if (call.method == ON_REWARDED_VIDEO_AD_CLICKED)
       onRewardedVideoAdClicked(Placement(
@@ -95,20 +93,6 @@ abstract class IronSourceListener {
     else if (call.method == ON_REWARDED_VIDEO_AD_STARTED)
       onRewardedVideoAdStarted();
   }
-
-  void onInterstitialAdClicked();
-
-  void onInterstitialAdReady();
-
-  void onInterstitialAdLoadFailed(IronSourceError error);
-
-  void onInterstitialAdOpened();
-
-  void onInterstitialAdClosed();
-
-  void onInterstitialAdShowSucceeded();
-
-  void onInterstitialAdShowFailed(IronSourceError error);
 
   //  Rewarded video
   void onRewardedVideoAdOpened();

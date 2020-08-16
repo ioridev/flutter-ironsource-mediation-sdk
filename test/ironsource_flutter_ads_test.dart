@@ -1,6 +1,5 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:ironsource_flutter_ads/IOS/ironsource_flutter_ads.dart';
 
 void main() {
   const MethodChannel channel = MethodChannel('ironsource_flutter_ads');
@@ -16,6 +15,6 @@ void main() {
   });
 
   //test('getPlatformVersion', () async {
-    //expect(await IronsourceFlutterAds.platformVersion, '42');
+  //expect(await IronsourceFlutterAds.platformVersion, '42');
   //});
 }
