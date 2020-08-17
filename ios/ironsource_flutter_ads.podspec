@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.summary          = 'A Flutter plugin that uses native platform views to show IronSource banner and interstitial ads!'
   s.description      = <<-DESC
 A Flutter plugin that uses native platform views (IOS & Android) to show IronSource banner and interstitial ads!
-                       DESC
+                      DESC
   s.homepage         = 'http://www.cntinteractive.com'
   s.license          = { :file => '../LICENSE' }
   s.author           = { 'CNT Interactive' => 'info@cntinteractive.com' }
@@ -19,6 +19,11 @@ A Flutter plugin that uses native platform views (IOS & Android) to show IronSou
   s.dependency 'IronSourceAdMobAdapter'
   s.dependency 'IronSourceFacebookAdapter'
   s.dependency 'IronSourceInMobiAdapter'
+  s.dependency 'IronSourceAdColonyAdapter'
+  s.dependency 'IronSourceAppLovinAdapter'
+  s.dependency 'IronSourcePangleAdapter'
+  s.dependency 'IronSourceVungleAdapter'
+  s.dependency 'IronSourceMaioAdapter'
   s.static_framework = true
   s.ios.deployment_target = '9.0'
 end
