@@ -1,6 +1,6 @@
 # ironsource
 
-Flutter plugin for showing [IronSource](ironsrc.com) ads (Android Ios)
+Flutter plugin for showing [IronSource](ironsrc.com) ads (Android & Ios)
 ## Progress
 - [ ] Interstitial
 - [ ] Banner (Still experimenting)
