@@ -1,82 +1,147 @@
 PODS:
+  - AdColony (4.1.5)
+  - AppLovinSDK (6.13.1)
+  - Bytedance-UnionAD (3.1.0.5)
+  - FBAudienceNetwork (5.10.1):
+    - FBSDKCoreKit/Basics (>= 5.6.0)
+  - FBSDKCoreKit/Basics (7.1.1)
   - Flutter (1.0.0)
-  - Google-Mobile-Ads-SDK (7.42.2):
-    - GoogleAppMeasurement (~> 5.7)
-  - GoogleAppMeasurement (5.8.1):
-    - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
-    - GoogleUtilities/MethodSwizzler (~> 5.2)
-    - GoogleUtilities/Network (~> 5.2)
-    - "GoogleUtilities/NSData+zlib (~> 5.2)"
-    - nanopb (~> 0.3)
-  - GoogleUtilities/AppDelegateSwizzler (5.8.0):
+  - Google-Mobile-Ads-SDK (7.64.0):
+    - GoogleAppMeasurement (~> 6.0)
+    - GoogleUserMessagingPlatform (~> 1.1)
+  - GoogleAppMeasurement (6.7.2):
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.7)
+    - GoogleUtilities/MethodSwizzler (~> 6.7)
+    - GoogleUtilities/Network (~> 6.7)
+    - "GoogleUtilities/NSData+zlib (~> 6.7)"
+    - nanopb (~> 1.30905.0)
+  - GoogleUserMessagingPlatform (1.1.0)
+  - GoogleUtilities/AppDelegateSwizzler (6.7.2):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (5.8.0)
-  - GoogleUtilities/Logger (5.8.0):
+  - GoogleUtilities/Environment (6.7.2):
+    - PromisesObjC (~> 1.2)
+  - GoogleUtilities/Logger (6.7.2):
     - GoogleUtilities/Environment
-  - GoogleUtilities/MethodSwizzler (5.8.0):
+  - GoogleUtilities/MethodSwizzler (6.7.2):
     - GoogleUtilities/Logger
-  - GoogleUtilities/Network (5.8.0):
+  - GoogleUtilities/Network (6.7.2):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (5.8.0)"
-  - GoogleUtilities/Reachability (5.8.0):
+  - "GoogleUtilities/NSData+zlib (6.7.2)"
+  - GoogleUtilities/Reachability (6.7.2):
     - GoogleUtilities/Logger
+  - InMobiSDK/Core (9.0.7)
   - ironsource_flutter_ads (1.0.0):
     - Flutter
+    - IronSourceAdColonyAdapter
     - IronSourceAdMobAdapter
+    - IronSourceAppLovinAdapter
     - IronSourceFacebookAdapter
     - IronSourceInMobiAdapter
+    - IronSourceMaioAdapter
+    - IronSourcePangleAdapter
     - IronSourceSDK
-  - IronSourceAdMobAdapter (4.3.4.3):
-    - Google-Mobile-Ads-SDK (= 7.42.2)
-    - IronSourceSDK (= 6.8.4.2)
-  - IronSourceFacebookAdapter (4.3.4.4):
-    - IronSourceSDK (= 6.8.4.2)
-  - IronSourceInMobiAdapter (4.3.1.4):
-    - IronSourceSDK (= 6.8.4.2)
-  - IronSourceSDK (6.8.4.2)
-  - nanopb (0.3.901):
-    - nanopb/decode (= 0.3.901)
-    - nanopb/encode (= 0.3.901)
-  - nanopb/decode (0.3.901)
-  - nanopb/encode (0.3.901)
+    - IronSourceVungleAdapter
+  - IronSourceAdColonyAdapter (4.3.2.5):
+    - AdColony (= 4.1.5)
+    - IronSourceSDK (= 7.0.0.0)
+  - IronSourceAdMobAdapter (4.3.15.0):
+    - Google-Mobile-Ads-SDK (= 7.64.0)
+    - IronSourceSDK (= 7.0.0.0)
+  - IronSourceAppLovinAdapter (4.3.15.4):
+    - AppLovinSDK (= 6.13.1)
+    - IronSourceSDK (= 7.0.0.0)
+  - IronSourceFacebookAdapter (4.3.18.4):
+    - FBAudienceNetwork (= 5.10.1)
+    - IronSourceSDK (= 7.0.0.0)
+  - IronSourceInMobiAdapter (4.3.7.5):
+    - InMobiSDK/Core (= 9.0.7)
+    - IronSourceSDK (= 7.0.0.0)
+  - IronSourceMaioAdapter (4.1.6.5):
+    - IronSourceSDK (= 7.0.0.0)
+    - MaioSDK (= 1.5.4)
+  - IronSourcePangleAdapter (4.1.5.3):
+    - Bytedance-UnionAD (= 3.1.0.5)
+    - IronSourceSDK (= 7.0.0.0)
+  - IronSourceSDK (7.0.0.0)
+  - IronSourceVungleAdapter (4.3.3.1):
+    - IronSourceSDK (= 7.0.0.0)
+    - VungleSDK-iOS (= 6.7.0)
+  - MaioSDK (1.5.4)
+  - nanopb (1.30905.0):
+    - nanopb/decode (= 1.30905.0)
+    - nanopb/encode (= 1.30905.0)
+  - nanopb/decode (1.30905.0)
+  - nanopb/encode (1.30905.0)
+  - PromisesObjC (1.2.10)
+  - VungleSDK-iOS (6.7.0)
 
 DEPENDENCIES:
-  - Flutter (from `.symlinks/flutter/ios`)
+  - Flutter (from `Flutter`)
   - ironsource_flutter_ads (from `.symlinks/plugins/ironsource_flutter_ads/ios`)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
+    - AdColony
+    - AppLovinSDK
+    - Bytedance-UnionAD
+    - FBAudienceNetwork
+    - FBSDKCoreKit
     - Google-Mobile-Ads-SDK
     - GoogleAppMeasurement
+    - GoogleUserMessagingPlatform
     - GoogleUtilities
+    - InMobiSDK
+    - IronSourceAdColonyAdapter
     - IronSourceAdMobAdapter
+    - IronSourceAppLovinAdapter
     - IronSourceFacebookAdapter
     - IronSourceInMobiAdapter
+    - IronSourceMaioAdapter
+    - IronSourcePangleAdapter
     - IronSourceSDK
+    - IronSourceVungleAdapter
+    - MaioSDK
     - nanopb
+    - PromisesObjC
+    - VungleSDK-iOS
 
 EXTERNAL SOURCES:
   Flutter:
-    :path: ".symlinks/flutter/ios"
+    :path: Flutter
   ironsource_flutter_ads:
     :path: ".symlinks/plugins/ironsource_flutter_ads/ios"
 
 SPEC CHECKSUMS:
+  AdColony: 7d81ec360d5f14b2ab7569d482f6529a7c0bf457
+  AppLovinSDK: ab1a0a8dd23eb0de9df8508096218982f52b1d3c
+  Bytedance-UnionAD: 4768919f6de97eb29687b8e50cee65eef5e9f3a9
+  FBAudienceNetwork: 6cdcc40aa475e8045ab14398e181a3dc90a5014e
+  FBSDKCoreKit: b46507dc8b8cefed31d644e74d7cc30e2a715ef8
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
-  Google-Mobile-Ads-SDK: 8f4f7e793bfd3fff5b082181b54112f81b579a67
-  GoogleAppMeasurement: ffe513e90551844a739e7bcbb1d2aca1c28a4338
-  GoogleUtilities: 04fce34bcd5620c1ee76fb79172105c74a4df335
-  ironsource_flutter_ads: d75f87cb23911168326c6cf92d7837284dbe5bd7
-  IronSourceAdMobAdapter: 545e12cb8acb04b18d42d371e487e66373e8431f
-  IronSourceFacebookAdapter: 78c388f34e303c15b5ecaaa34b29e00bf85ed5f6
-  IronSourceInMobiAdapter: 9f91708cc4c465df66f678da3e408aeb8d1eabb5
-  IronSourceSDK: 311369a610192c00350654fe53ceeb279aa8d976
-  nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  Google-Mobile-Ads-SDK: aec52559ce73ddf1e6478d1904dd71a741f1bc61
+  GoogleAppMeasurement: 3def7652b1f5b5a576178dc332e2a36a260fbef6
+  GoogleUserMessagingPlatform: 9dc714d2e1f0aa727b9cc52d266dc1b155f4c3f2
+  GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
+  InMobiSDK: c3ec3fed998d8431ba31ad16565d102159e3f9e3
+  ironsource_flutter_ads: 26e7e50ffb29b565c50c70b097fbee2dcf8e1035
+  IronSourceAdColonyAdapter: 3950aa89c37a7db425e591f8a7cb5a97a416f86f
+  IronSourceAdMobAdapter: 085b96fa487e13eafdae28f270ec814452681728
+  IronSourceAppLovinAdapter: fa024d79ddac721f341e3b23ff5b523e01cbc5c5
+  IronSourceFacebookAdapter: ac135ce309aa8a60f73de7145dc415253888749a
+  IronSourceInMobiAdapter: c0aa33e8b86b1eb28a248c10639563862b6f287c
+  IronSourceMaioAdapter: 539638c605caea86af7269b8f24ef8ea892ee8c1
+  IronSourcePangleAdapter: e5ac22ca1bb7278d3bee926e83280c0eed716327
+  IronSourceSDK: ca7226e91b5c4c3b80fd64e955fb366d12b12750
+  IronSourceVungleAdapter: 19eda546284ef2cdc6fb60b6ad4b12f7b01ce01b
+  MaioSDK: f689c9d1e8e065947f903e75254770891b5cd6b6
+  nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
+  PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
+  VungleSDK-iOS: 85456e060a3f26a0e03f9d4841495976326a7d05
 
-PODFILE CHECKSUM: e2ef6e3f9b031db820688d1334dae67d19025d3e
+PODFILE CHECKSUM: 21b7706a9701511414a319428330b872c19fdae3
 
 COCOAPODS: 1.9.3
