@@ -1,22 +1,58 @@
 #import "IronsourceFlutterAdsPlugin.h"
-#import <ironsource_flutter_ads-Swift.h>
 
 @implementation IronsourceFlutterAdsPlugin
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
-    [SwiftIronsourceFlutterAdsPlugin registerWithRegistrar:registrar];
-    [IronsourceIntersitialPlugin registerWithRegistrar: registrar];
-}
-@end
-
-@implementation IronSourceRewardedAdDelegate
-
-- (id)initWithMethodChannel:(FlutterMethodChannel *)methodChannel {
-    self = [super init];
-    self.methodChannel = methodChannel;
-
-    return self;
+    IronsourceFlutterAdsPlugin *instance = [[IronsourceFlutterAdsPlugin alloc] init];
+    instance.methodChannel = [FlutterMethodChannel methodChannelWithName:@"com.karnadi.ironsource" binaryMessenger: registrar.messenger];
+    [registrar addMethodCallDelegate:instance channel:instance.methodChannel];
 }
 
+- (void)handleMethodCall:(FlutterMethodCall *)call result:(FlutterResult)result {
+    NSString *callMethod = call.method;
+    if ([@"initialize" isEqualToString: call.method]) {
+        NSString *appKey = call.arguments[@"appKey"];
+        [IronSource setRewardedVideoDelegate:self];
+        [[ISSupersonicAdsConfiguration configurations] setUseClientSideCallbacks:@YES];
+        [IronSource initISDemandOnly:appKey adUnits:@[IS_REWARDED_VIDEO]];
+        result(@YES);
+    } else if ([@"getAdvertiserId" isEqualToString:callMethod]) {
+        result([IronSource advertiserId]);
+    } else if ([@"activityResumed" isEqualToString:callMethod]) {
+        // IronSource iOS SDK には該当するメソッドがないため実装は無し
+        result(@YES);
+    } else if ([@"activityPaused" isEqualToString:callMethod]) {
+        // IronSource iOS SDK には該当するメソッドがないため実装は無し
+        result(@YES);
+    } else if ([@"validateIntegration" isEqualToString:callMethod]) {
+        [ISIntegrationHelper validateIntegration];
+        result(@YES);
+    } else if ([@"setUserId" isEqualToString:callMethod]) {
+        NSString *userID = call.arguments[@"userId"];
+        [IronSource setUserId:userID];
+        result(@YES);
+    } else if ([@"isRewardedVideoAvailable" isEqualToString:callMethod]) {
+        NSNumber *hasRewardedVideo = [NSNumber numberWithBool:self.hasRewardedVideo];
+        if (hasRewardedVideo != nil) {
+            result(hasRewardedVideo);
+        } else {
+            result([NSNumber numberWithBool:[IronSource hasRewardedVideo]]);
+        }
+    }
+    else if ([@"showRewardedVideo" isEqualToString:callMethod]) {
+        UIViewController *viewController = [[[UIApplication sharedApplication] keyWindow] rootViewController];
+        if (viewController != nil) {
+            [IronSource showRewardedVideoWithViewController:viewController];
+            result(@YES);
+            return;
+        }
+        
+        result(@NO);
+    } else {
+        result(FlutterMethodNotImplemented);
+    }
+}
+
+#pragma mark - ISRewardedVideoDelegate
 - (void)didClickRewardedVideo:(ISPlacementInfo *)placementInfo {
     dispatch_async(dispatch_get_main_queue(), ^{
          [self.methodChannel invokeMethod:@"onRewardedVideoAdClicked" arguments: @{@"placementId": @"", @"placementName": [placementInfo placementName], @"rewardAmount": [placementInfo rewardAmount], @"rewardName": [placementInfo rewardName] }];
