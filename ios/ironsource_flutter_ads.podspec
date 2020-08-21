@@ -24,6 +24,7 @@ A Flutter plugin that uses native platform views (IOS & Android) to show IronSou
   s.dependency 'IronSourcePangleAdapter'
   s.dependency 'IronSourceVungleAdapter'
   s.dependency 'IronSourceMaioAdapter'
+  s.dependency 'IronSourceUnityAdsAdapter'
   s.static_framework = true
   s.ios.deployment_target = '9.0'
 end
