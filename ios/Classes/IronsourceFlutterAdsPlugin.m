@@ -1,10 +1,25 @@
 #import "IronsourceFlutterAdsPlugin.h"
+#import <IronSource/IronSource.h>
+
+@interface IronsourceFlutterAdsPlugin ()<ISRewardedVideoDelegate>
+@property (nonatomic, assign) bool hasRewardedVideo;
+@end
+
 
 @implementation IronsourceFlutterAdsPlugin
+FlutterMethodChannel* globalMethodChannel;
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
+    FlutterMethodChannel* channel = [FlutterMethodChannel
+                                     methodChannelWithName:@"com.karnadi.ironsource"
+                                     binaryMessenger:[registrar messenger]];
+    
+    
+    
     IronsourceFlutterAdsPlugin *instance = [[IronsourceFlutterAdsPlugin alloc] init];
-    instance.methodChannel = [FlutterMethodChannel methodChannelWithName:@"com.karnadi.ironsource" binaryMessenger: registrar.messenger];
-    [registrar addMethodCallDelegate:instance channel:instance.methodChannel];
+    [registrar addMethodCallDelegate:instance channel:channel];
+    
+    globalMethodChannel = channel;
+    
 }
 
 - (void)handleMethodCall:(FlutterMethodCall *)call result:(FlutterResult)result {
@@ -55,49 +70,50 @@
 #pragma mark - ISRewardedVideoDelegate
 - (void)didClickRewardedVideo:(ISPlacementInfo *)placementInfo {
     dispatch_async(dispatch_get_main_queue(), ^{
-         [self.methodChannel invokeMethod:@"onRewardedVideoAdClicked" arguments: @{@"placementId": @"", @"placementName": [placementInfo placementName], @"rewardAmount": [placementInfo rewardAmount], @"rewardName": [placementInfo rewardName] }];
+        [globalMethodChannel invokeMethod:@"onRewardedVideoAdCglobalMethodChannellicked" arguments: @{@"placementId": @"", @"placementName": [placementInfo placementName], @"rewardAmount": [placementInfo rewardAmount], @"rewardName": [placementInfo rewardName] }];
     });
 }
 
 - (void)didReceiveRewardForPlacement:(ISPlacementInfo *)placementInfo {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.methodChannel invokeMethod:@"onRewardedVideoAdRewarded" arguments: @{@"placementId": @"", @"placementName": [placementInfo placementName], @"rewardAmount": [placementInfo rewardAmount], @"rewardName": [placementInfo rewardName] }];
+        [globalMethodChannel invokeMethod:@"onRewardedVideoAdRewarded" arguments: @{@"placementId": @"", @"placementName": [placementInfo placementName], @"rewardAmount": [placementInfo rewardAmount], @"rewardName": [placementInfo rewardName] }];
     });
 }
 
 - (void)rewardedVideoDidClose {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.methodChannel invokeMethod:@"onRewardedVideoAdClosed" arguments: nil];
+        [globalMethodChannel invokeMethod:@"onRewardedVideoAdClosed" arguments: nil];
     });
 }
 
 - (void)rewardedVideoDidEnd {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.methodChannel invokeMethod:@"onRewardedVideoAdEnded" arguments: nil];
+        [globalMethodChannel invokeMethod:@"onRewardedVideoAdEnded" arguments: nil];
     });
 }
 
 - (void)rewardedVideoDidFailToShowWithError:(NSError *)error {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.methodChannel invokeMethod:@"onRewardedVideoAdShowFailed" arguments: @{@"errorCode": [NSNumber numberWithLong: [error code]], @"errorMessage": [error localizedDescription], @"info": [error userInfo]}];
+        [globalMethodChannel invokeMethod:@"onRewardedVideoAdShowFailed" arguments: @{@"errorCode": [NSNumber numberWithLong: [error code]], @"errorMessage": [error localizedDescription], @"info": [error userInfo]}];
     });
 }
 
 - (void)rewardedVideoDidOpen {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.methodChannel invokeMethod:@"onRewardedVideoAdOpened" arguments: nil];
+        [globalMethodChannel invokeMethod:@"onRewardedVideoAdOpened" arguments: nil];
     });
 }
 
 - (void)rewardedVideoDidStart {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.methodChannel invokeMethod:@"onRewardedVideoAdStarted" arguments: nil];
+        [globalMethodChannel invokeMethod:@"onRewardedVideoAdStarted" arguments: nil];
     });
 }
 
 - (void)rewardedVideoHasChangedAvailability:(BOOL)available {
+    NSLog(@"👩‍🦳👩‍🦳👩‍🦳👩‍🦳👩‍🦳👩‍🦳👩‍🦳👩‍🦳%s", __PRETTY_FUNCTION__);
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.methodChannel invokeMethod:@"onRewardedVideoAvailabilityChanged" arguments: [NSNumber numberWithBool:available]];
+        [globalMethodChannel invokeMethod:@"onRewardedVideoAvailabilityChanged" arguments: [NSNumber numberWithBool:available]];
     });
 }
 
