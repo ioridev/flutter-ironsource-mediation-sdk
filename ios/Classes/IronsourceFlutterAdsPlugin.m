@@ -13,7 +13,7 @@
         NSString *appKey = call.arguments[@"appKey"];
         [IronSource setRewardedVideoDelegate:self];
         [[ISSupersonicAdsConfiguration configurations] setUseClientSideCallbacks:@YES];
-        [IronSource initISDemandOnly:appKey adUnits:@[IS_REWARDED_VIDEO]];
+        [IronSource initWithAppKey:appKey adUnits:@[IS_REWARDED_VIDEO]];
         result(@YES);
     } else if ([@"getAdvertiserId" isEqualToString:callMethod]) {
         result([IronSource advertiserId]);
@@ -97,6 +97,7 @@
 
 - (void)rewardedVideoHasChangedAvailability:(BOOL)available {
     dispatch_async(dispatch_get_main_queue(), ^{
+        self.hasRewardedVideo = available;
         [self.methodChannel invokeMethod:@"onRewardedVideoAvailabilityChanged" arguments: [NSNumber numberWithBool:available]];
     });
 }
